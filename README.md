@@ -316,19 +316,18 @@ The Engineering RAG Engine is designed around a core principle:
 > **Retrieve the right evidence first, then generate an answer that remains traceable to its source.**
 
 By combining **layout-aware document parsing, multimodal extraction, hybrid retrieval, structured SQL querying, and page-level provenance**, the system can handle engineering knowledge that traditional text-only RAG pipelines often struggle with.
+The current evaluation achieved **95.5% answer accuracy with 100% document and page citation accuracy**, providing a strong foundation for further improvements in retrieval quality, multimodal reasoning, and production scalability.
 
 ## 9. Running the Project
 
-### Install dependencies
+### To install dependencies
 python run.py install
 
-### Ingest documents
+### To ingest documents
 python run.py ingest
 
-### Ask a question
+### To ask a question
 python run.py ask "What is the voltage?"
 
-### Run evaluation
+### To run evaluation
 python run.py eval
-
-The current evaluation achieved **95.5% answer accuracy with 100% document and page citation accuracy**, providing a strong foundation for further improvements in retrieval quality, multimodal reasoning, and production scalability.
