@@ -1,0 +1,156 @@
+[
+  {
+    "id": "q01",
+    "type": "factual",
+    "question": "In US8,485,576 B2 (Robotic Gripper), what provides the attractive force at the tip of pin 120 in the electromagnetic embodiment?",
+    "reference_answer": "An electromagnet 120a energized by a wire 125a wound around it.",
+    "evidence": [{"doc": "US8485576B2_robotic_gripper.pdf", "page": 2}]
+  },
+  {
+    "id": "q02",
+    "type": "factual",
+    "question": "According to US2,988,237 (Programmed Article Transfer), what component reduces the transfer head's traverse rate in advance of the required stopping point?",
+    "reference_answer": "The function control anticipator 64.",
+    "evidence": [{"doc": "US2988237A_programmed_article_transfer.pdf", "page": 2}]
+  },
+  {
+    "id": "q03",
+    "type": "factual",
+    "question": "How many microprocessors monitor the run-away state in the controller described in US5,481,460 (Controller for Electric Vehicle)?",
+    "reference_answer": "Three or more microprocessors.",
+    "evidence": [{"doc": "US5481460A_ev_controller.pdf", "page": 1}]
+  },
+  {
+    "id": "q04",
+    "type": "factual",
+    "question": "In US2017/0320570A1 (UAV VTOL patent), how many batteries does the UAV have and where are they located?",
+    "reference_answer": "Three batteries (38): two in the left and right wings, and one in the fuselage.",
+    "evidence": [{"doc": "US20170320570A1_uav_vtol.pdf", "page": 1}]
+  },
+  {
+    "id": "q05",
+    "type": "factual",
+    "question": "What recharges the UAV's battery in US2017/0320570A1, and what is the mechanism called?",
+    "reference_answer": "Wireless power transfer (WPT) circuitry 40, via inductive recharging while tail-sitting on a recharging pad.",
+    "evidence": [{"doc": "US20170320570A1_uav_vtol.pdf", "page": 2}]
+  },
+  {
+    "id": "q06",
+    "type": "table",
+    "question": "What is the maximum discharge current rating of the EV-BMS-100?",
+    "reference_answer": "320 A continuous, 450 A for 10 seconds.",
+    "evidence": [{"doc": "EV-BMS-100_design_document.pdf", "page": 2}]
+  },
+  {
+    "id": "q07",
+    "type": "table",
+    "question": "What ingress protection (IP) rating does the EV-BMS-100 enclosure have?",
+    "reference_answer": "IP67.",
+    "evidence": [{"doc": "EV-BMS-100_design_document.pdf", "page": 3}]
+  },
+  {
+    "id": "q08",
+    "type": "table",
+    "question": "What communication protocol and bus speed does the EV-BMS-100 use?",
+    "reference_answer": "CAN 2.0B at 500 kbps.",
+    "evidence": [{"doc": "EV-BMS-100_design_document.pdf", "page": 2}]
+  },
+  {
+    "id": "q09",
+    "type": "table",
+    "question": "What is the peak current per ESC channel on the Falcon-VT1 flight controller?",
+    "reference_answer": "60 A, for a maximum of 10 seconds.",
+    "evidence": [{"doc": "Falcon-VT1_flight_controller_design_document.pdf", "page": 2}]
+  },
+  {
+    "id": "q10",
+    "type": "table",
+    "question": "What is the operating temperature range of the Falcon-VT1 flight controller?",
+    "reference_answer": "-20 °C to 55 °C.",
+    "evidence": [{"doc": "Falcon-VT1_flight_controller_design_document.pdf", "page": 2}]
+  },
+  {
+    "id": "q11",
+    "type": "table",
+    "question": "What is the backlash specification for the RJA-40 actuator module?",
+    "reference_answer": "Less than 3 arcminutes, measured at the output flange.",
+    "evidence": [{"doc": "RJA-40_actuator_design_document.docx", "page": 2}]
+  },
+  {
+    "id": "q12",
+    "type": "table",
+    "question": "What is the rated continuous torque of the RJA-40 actuator, and what is its peak torque?",
+    "reference_answer": "Rated (continuous) torque is 40 N·m; peak torque is 120 N·m for up to 1 second.",
+    "evidence": [{"doc": "RJA-40_actuator_design_document.docx", "page": 2}]
+  },
+  {
+    "id": "q13",
+    "type": "figure",
+    "question": "What component is labelled 160 in FIG. 2 of US8,485,576 B2?",
+    "reference_answer": "The control unit.",
+    "evidence": [{"doc": "US8485576B2_robotic_gripper.pdf", "page": 1}]
+  },
+  {
+    "id": "q14",
+    "type": "figure",
+    "question": "What component is labelled 112 in FIG. 2 of US2,988,237?",
+    "reference_answer": "The gate.",
+    "evidence": [{"doc": "US2988237A_programmed_article_transfer.pdf", "page": 1}]
+  },
+  {
+    "id": "q15",
+    "type": "figure",
+    "question": "In FIG. 3 of US2017/0320570A1, what is component 18?",
+    "reference_answer": "The left thrust-generating device.",
+    "evidence": [{"doc": "US20170320570A1_uav_vtol.pdf", "page": 1}]
+  },
+  {
+    "id": "q16",
+    "type": "figure",
+    "question": "How many M12 connector ports are shown on the EV-BMS-100 enclosure in Figure 2 of its design document?",
+    "reference_answer": "Four.",
+    "evidence": [{"doc": "EV-BMS-100_design_document.pdf", "page": 3}]
+  },
+  {
+    "id": "q17",
+    "type": "structured",
+    "question": "How many test runs failed in the test log?",
+    "reference_answer": "7 test runs are marked FAIL.",
+    "evidence": [{"doc": "test_log.csv", "page": 1}]
+  },
+  {
+    "id": "q18",
+    "type": "structured",
+    "question": "How many distinct EV-BMS-100 units were tested in the test log?",
+    "reference_answer": "18 distinct EV-BMS-100 units (by serial number).",
+    "evidence": [{"doc": "test_log.csv", "page": 1}]
+  },
+  {
+    "id": "q19",
+    "type": "structured",
+    "question": "Which part number in the bill of materials has the highest unit cost, and what is that cost?",
+    "reference_answer": "RJA-GEAR-101 (planetary + harmonic gearset), at $315.75 per unit.",
+    "evidence": [{"doc": "bill_of_materials.xlsx", "page": 1}]
+  },
+  {
+    "id": "q20",
+    "type": "structured",
+    "question": "What is the extended cost of the FVT-ESC-40A line item in the bill of materials?",
+    "reference_answer": "$180.00 (8 units at $22.50 each).",
+    "evidence": [{"doc": "bill_of_materials.xlsx", "page": 1}]
+  },
+  {
+    "id": "q21",
+    "type": "unanswerable",
+    "question": "What is the warranty period for the EV-BMS-100?",
+    "reference_answer": "Not found — no document in the corpus states a warranty period.",
+    "evidence": []
+  },
+  {
+    "id": "q22",
+    "type": "unanswerable",
+    "question": "What is the maximum flight altitude of a UAV equipped with the Falcon-VT1 flight controller?",
+    "reference_answer": "Not found — no document in the corpus states a maximum altitude.",
+    "evidence": []
+  }
+]
