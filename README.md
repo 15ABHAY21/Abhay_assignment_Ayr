@@ -320,14 +320,44 @@ The current evaluation achieved **95.5% answer accuracy with 100% document and p
 
 ## 9. Running the Project
 
-### To install dependencies
+The project can be run using either `run.py` or the provided `Makefile`.
+
+### Method 1: Using `run.py`
+
+```bash
+# Install dependencies
 python run.py install
 
-### To ingest documents
+# Ingest and index documents
 python run.py ingest
 
-### To ask a question
+# Ask a question
 python run.py ask "What is the voltage?"
 
-### To run evaluation
+# Run evaluation
 python run.py eval
+```
+
+### Method 2: Using `Makefile`
+
+```bash
+# Install dependencies
+make install
+
+# Ingest and index documents
+make ingest
+
+# Ask a question
+make ask Q="What is the voltage?"
+
+# Run evaluation
+make eval
+```
+
+| Command   | Purpose                      |
+| --------- | ---------------------------- |
+| `install` | Install project dependencies |
+| `ingest`  | Process and index documents  |
+| `ask`     | Query the RAG system         |
+| `eval`    | Run the evaluation suite     |
+
