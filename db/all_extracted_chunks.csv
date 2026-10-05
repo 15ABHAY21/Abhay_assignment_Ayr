@@ -1,0 +1,216 @@
+text,doc,page
+Design Document · Rev. C · Ayr Powertrain Systems · Doc. No. DD-BMS-100-C,EV-BMS-100_design_document.pdf,1
+"The EV-BMS-100 is a 96S lithium-ion battery management system for light commercial electric vehicle packs. It  provides  cell-level  voltage  and  temperature  monitoring,  passive balancing, contactor control, and a CAN 2.0B interface to the vehicle ECU. The BMS MCU implements over-voltage, under-voltage, over-current, and over-temperature protection independently of the vehicle ECU.",EV-BMS-100_design_document.pdf,1
+Figure 1 — BMS System Block Diagram,EV-BMS-100_design_document.pdf,1
+"Figure 1 - BMS system block diagram showing the monitoring, balancing, and communication paths between the battery pack and the vehicle ECU.",EV-BMS-100_design_document.pdf,1
+The Cell Voltage & Thermistor Monitor samples all 96 cell taps and 12 thermistor channels at 10 Hz and reports results to the BMS MCU over an isolated SPI link. The BMS MCU runs the safety state machine and issues balancing commands to the Cell Balancing Circuit and open/close commands to the Contactor Driver.,EV-BMS-100_design_document.pdf,1
+"Nominal pack voltage, Value = 355.2 V. Nominal pack voltage, Notes = 96S1P, 3.7 V/cell nominal. Max charge current, Value = 120 A. Max charge current, Notes = continuous, 150 A for 30 s. Max discharge current, Value = 320 A. Max discharge current, Notes = continuous, 450 A for 10 s. Cell balancing current, Value = 150 mA. Cell balancing current, Notes = passive, per cell. Overvoltage threshold, Value = 4.25 V/cell. Overvoltage threshold, Notes = latching fault. Undervoltage threshold, Value = 2.80 V/cell. Undervoltage threshold, Notes = latching fault. Isolation voltage, Value = ‡ 500 V DC. Isolation voltage, Notes = pack-to-chassis. Quiescent current (sleep), Value = < 2 mA. Quiescent current (sleep), Notes = measured at 12 V aux supply. Communication protocol, Value = CAN 2.0B, 500 kbps. Communication protocol, Notes = J1939-style PGNs. Operating temperature range, Value = -30 °C to 65 °C. Operating temperature range, Notes = ambient, enclosure-mounted",EV-BMS-100_design_document.pdf,2
+"Enclosure dimensions, Value = 280 x 210 x 65 mm. Enclosure dimensions, Notes = LxWxH. Weight, Value = 2.4 kg. Weight, Notes = excluding harness. Ingress protection, Value = IP67. Ingress protection, Notes = connectors mated. Mounting, Value = 4x M6 threaded inserts. Mounting, Notes = 150 x 100 mm pattern",EV-BMS-100_design_document.pdf,2
+Figure 2 — BMS Enclosure (rendering),EV-BMS-100_design_document.pdf,2
+"Figure 2 - BMS enclosure rendering showing the four M12 connector ports (pack sense, power, CAN, and auxiliary 12 V).",EV-BMS-100_design_document.pdf,3
+"The current hardware revision (Rev. C) does not support active balancing; balancing energy is dissipated as heat across bleed resistors. A future Rev. D is planned to add active balancing via a flyback topology, which is expected to improve pack-level capacity utilization by 2-3%.",EV-BMS-100_design_document.pdf,3
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+Here’s a structured list mapping each component to its reference numeral in the block diagram:
+
+1. **Battery Pack** (965 cells)
+   - → Cell Voltage & Thermistor Monitor
+
+2. **Cell Voltage & Thermistor Monitor**
+   - → BMS MCU (safety core)
+   - ↓ Cell Balancing Circuit
+
+3. **BMS MCU (safety core)**
+   - → CAN Transceiver
+   - → Contactor Driver
+
+4. **Cell Balancing Circuit**
+   - ↓ Contactor Driver
+
+5. **Contactor Driver**
+   - → Vehicle ECU
+
+6. **CAN Transceiver**
+   - (no outgoing flow noted)
+
+### Directional Flow/Arrows:
+- Arrows indicate the following flows:
+  - From the **Battery Pack** to **Cell Voltage & Thermistor Monitor**
+  - From **Cell Voltage & Thermistor Monitor** to **BMS MCU** and to **Cell Balancing Circuit**
+  - From **BMS MCU** to **CAN Transceiver** and **Contactor Driver**
+  - From **Cell Balancing Circuit** to **Contactor Driver**
+  - From **Contactor Driver** to **Vehicle ECU**",EV-BMS-100_design_document.pdf,1
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+### Structured Component List
+
+1. **1** - M12 Connector x4
+
+### Directional Flow
+- No directional flow or arrows are indicated in the diagram.",EV-BMS-100_design_document.pdf,2
+Design Document · Rev. A2 · Ayr Aerial Systems · Doc. No. DD-FVT1-A2,Falcon-VT1_flight_controller_design_document.pdf,1
+"The Falcon-VT1 is a flight controller board for small VTOL fixed-wing UAVs, supporting up to 8 independent ESC  channels,  redundant  IMUs,  and  a  dedicated  telemetry  radio  link.  It  is  designed  to  drive  the  four thrust-generating devices used in tail-sitting VTOL transitions.",Falcon-VT1_flight_controller_design_document.pdf,1
+Figure 1 — Falcon-VT1 Flight Controller Block Diagram,Falcon-VT1_flight_controller_design_document.pdf,1
+"Figure 1 - Falcon-VT1 block diagram: sensor fusion, autopilot MCU, ESC driver bank, and RF telemetry.",Falcon-VT1_flight_controller_design_document.pdf,1
+"The  flight  controller  MCU  fuses  IMU,  GPS,  and  barometric  data  at  400  Hz  and  outputs  PWM/DShot commands to the ESC driver bank. The RF transceiver provides a bidirectional 915 MHz telemetry link to the ground control station for command uplink and status downlink.",Falcon-VT1_flight_controller_design_document.pdf,1
+"Input voltage range, Value = 9 - 26 V DC. Input voltage range, Notes = 2S-6S LiPo compatible. Max continuous current per ESC channel, Value = 40 A. Max continuous current per ESC channel, Notes = 8 channels. Peak current per ESC channel, Value = 60 A. Peak current per ESC channel, Notes = 10 s max. Processor, Value = Dual-core Cortex-M7 @480. Processor, Notes = MHz with M4 co-processor. IMU update rate, Value = 400 Hz. IMU update rate, Notes = triple-redundant IMU. Telemetry range, Value = ‡ 15 km. Telemetry range, Notes = line-of-sight, 915 MHz. Operating temperature range, Value = -20 °C to 55 °C. Operating temperature range, Notes = board ambient. Dimensions, Value = 68 x 46 x 14 mm. Dimensions, Notes = excluding connectors. Weight, Value = 38 g. Weight, Notes = board only",Falcon-VT1_flight_controller_design_document.pdf,2
+The current revision (A2) does not provide hot-swap redundancy between the primary and secondary IMU; a failed primary IMU requires a reboot to switch. This is being addressed in Rev. B.,Falcon-VT1_flight_controller_design_document.pdf,2
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+Here's the structured list mapping the reference numerals to their corresponding component names from the block diagram:
+
+1. **IMU / GPS / Barometer**
+2. **Flight Controller MCU (autopilot)**
+3. **ESC Driver (x4-8 ch.)**
+4. **Brushless Motors**
+5. **RF Transceiver** (connected below the Flight Controller MCU)
+6. **Power Module** (connected below the ESC Driver)
+
+### Directional Flow:
+- The flow starts from **IMU / GPS / Barometer** → **Flight Controller MCU** → **ESC Driver** → **Brushless Motors**.
+- The **Flight Controller MCU** also connects down to the **RF Transceiver** for telemetry and to the **Power Module**.",Falcon-VT1_flight_controller_design_document.pdf,1
+United States Patent,US20170320570A1_uav_vtol.pdf,1
+"Applicant: Aerovel-type exercise adaptation, Vancouver, BC (CA) Filed: May 9, 2016    Serial No.: 15/150,102    Patent No.: US 2017/0320570 A1    Date of Patent: Nov. 9, 2017 (Pub.)",US20170320570A1_uav_vtol.pdf,1
+27 Claims    Classification: B64C 29/00 (2006.01); 244/17.23,US20170320570A1_uav_vtol.pdf,1
+"US US 2017/0320570 A1      Nov. 9, 2017 (Pub.)",US20170320570A1_uav_vtol.pdf,1
+"A  variety  of  unmanned  aerial  vehicles,  colloquially  known  as drones,  have  been  developed  for  military,  reconnaissance  and recreational  uses  such  as  aerial  photography.  UAVs  can  be gas-powered  or  electrically  powered  and  can  be  fixed-wing  or rotary-wing.",US20170320570A1_uav_vtol.pdf,1
+"Reconnaissance  UAVs  are  well  suited  to  monitor  or  surveil remotely  situated  infrastructure  such  as  oil  or  water  pipelines, electric power lines, coastlines, farmland, borders, and forest fires. There is accordingly a need in the industry for improved unmanned aerial  vehicles  capable  of  performing  extended,  long-distance aerial surveillance.",US20170320570A1_uav_vtol.pdf,1
+"An unmanned aerial vehicle (UAV), or drone, includes a fuselage 12,  left  and  right  airfoil-shaped  wings  14,  16  connected  to  the fuselage  to  generate  lift  in  forward  flight,  a  left  thrust-generating device 18 supported by the left wing, and a right thrust-generating device 20 supported by the right wing. The UAV further includes a vertical stabilizer, a top thrust-generating device 28 mounted to a top portion of the stabilizer, and a bottom thrust-generating device 34 mounted to a bottom portion. An onboard battery 38 powers the thrust-generating devices, enabling the UAV to transition between forward flight and vertical take-off and landing.",US20170320570A1_uav_vtol.pdf,1
+"The UAV 10 includes a fuselage 12 which may be made of one or more  composite  materials,  e.g.  carbon  fiber,  fiberglass,  or  a suitable metal such as aluminum. The airframe also includes left and right airfoil-shaped wings 14, 16 connected to the fuselage.",US20170320570A1_uav_vtol.pdf,1
+"The UAV has a left thrust-generating device 18 supported by the left wing 14 and a right thrust-generating device 20 supported by the right wing 16, mechanically coupled to left and right propellers 22, 24.",US20170320570A1_uav_vtol.pdf,1
+The UAV has three batteries 38 symmetrically housed within the airframe:  two  batteries  38  are  disposed  within  the  left  and  right wings while a third battery 38 is disposed within the fuselage. The battery or batteries 38 may be inductively recharged via wireless power transfer (WPT) circuitry 40 while the UAV is in a tail-sitting position on a recharging pad.,US20170320570A1_uav_vtol.pdf,1
+"An autopilot module 46 (flight controller) generates control command  signals  for  the  thrust-generating  devices  and  control surfaces to adjust pitch, yaw and roll to keep the UAV flying within predetermined flight-envelope parameters.",US20170320570A1_uav_vtol.pdf,1
+FIG.  1  is  a  perspective  view  of  a  UAV  in  accordance  with  an embodiment of the present invention.,US20170320570A1_uav_vtol.pdf,1
+FIG. 2A is a top view of the UAV; FIG. 2B is a side view; FIG. 2C is a rear view.,US20170320570A1_uav_vtol.pdf,1
+"FIG. 3 is a bottom, partial cutaway view of the UAV showing the battery 38 and autopilot module 46 layout.",US20170320570A1_uav_vtol.pdf,1
+FIG. 4 is a schematic depiction of the UAV taking off vertically and then transitioning to forward flight.,US20170320570A1_uav_vtol.pdf,1
+FIG. 6 is a block diagram of electrical components of the UAV.,US20170320570A1_uav_vtol.pdf,1
+What is claimed is:,US20170320570A1_uav_vtol.pdf,1
+"1.  An  unmanned aerial  vehicle  comprising:  a  fuselage  12;  left and right airfoil-shaped wings 14, 16 connected to the fuselage and configured to generate lift in forward flight; a left thrust-generating device 18 supported by the left wing; a right thrust-generating  device  20  supported  by  the  right  wing;  a vertical stabilizer having a top portion 26 and a bottom portion 32;  a  top  thrust-generating  device  28  mounted  to  the  top portion;  a  bottom  thrust-generating  device  34  mounted  to  the bottom portion; and an onboard power source for powering the thrust-generating devices.",US20170320570A1_uav_vtol.pdf,1
+"2. The unmanned aerial vehicle of claim 1, wherein the onboard power source comprises three batteries 38 symmetrically housed  within  the  airframe,  two  of  the  batteries  38  being disposed within the left and right wings 14, 16 and a third battery",US20170320570A1_uav_vtol.pdf,1
+"FIG. 3 - Bottom, partial cutaway view of the UAV showing battery 38 and autopilot module 46 placement.",US20170320570A1_uav_vtol.pdf,1
+"- 38 being disposed within the fuselage 12. 3.  The  unmanned aerial vehicle of claim 1, further comprising wireless power transfer (WPT) circuitry 40 configured to inductively recharge the onboard  power  source  while the unmanned  aerial  vehicle is in a tail-sitting position  on  a recharging pad. 4. The unmanned aerial vehicle of claim 1, further comprising an autopilot  module  46  configured  to  generate  control  command signals for the thrust-generating devices to adjust pitch, yaw and roll within a predetermined flight envelope. 5. The unmanned aerial vehicle of claim 1, further comprising a digital  camera  42  and  a  data  storage  device  44  onboard  the fuselage 12 for recording and locally storing image data.",US20170320570A1_uav_vtol.pdf,2
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+### Structured List of Components
+
+- **12**: fuselage  
+- **14**: left wing  
+- **18**: left thrust device  
+- **28**: bottom thrust device  
+- **34**: autopilot module  
+- **38**: battery  
+- **46**: right thrust device  
+- **Right Wing**: referenced but not numerically labeled.
+
+### Directional Flow
+- **Arrow Flow**: 
+  - From **fuselage (12)** to **battery (38)**
+  - From **battery (38)** to **top thrust device (28)**
+  - From **top thrust device (28)** branching down to **bottom thrust device (34)**
+  - Arrows also indicate the integration of thrust devices with **left wing (14)** and **right wing** (with corresponding thrust devices indicated). 
+
+This structured analysis reflects the components and their interconnections in the block diagram.",US20170320570A1_uav_vtol.pdf,1
+"George C. Devol, Jr., Brookside Drive, Greenwich, Conn. Filed: Dec. 10, 1954 Serial No.: 474,574 Patent No.: 2,988,237 Date of Patent: Jun. 13, 1961 28 Claims Classification: Cl. 214-11",US2988237A_programmed_article_transfer.pdf,1
+"The present invention relates to the automatic operation of machinery, particularly to automatically operable materials handling apparatus, and to automatic control apparatus suitable for such machinery. A broad object of the present invention resides in the provision of article transfer apparatus having versatile program control means. The article transfer head 60 is moved by a mechanical power source through a sequence of strokes whose lengths and directions are determined by a program controller, here a program drum 62.",US2988237A_programmed_article_transfer.pdf,1
+"FIG. 2 —- Transfer-head rate control, program drum 62, and valve control circuit 45.",US2988237A_programmed_article_transfer.pdf,1
+"From the earliest years in the mechanical handling of articles there have been but two types of machine control: cam control and manual control. Manually controlled article handling equipment has the highly desirable property of being most flexible, but entails the high cost of operating manpower.",US2988237A_programmed_article_transfer.pdf,1
+"The present invention makes available for the first time a more or less general purpose machine that has universal application to a vast diversity of applications where cyclic control is desired. Universal automation, or Unimation, is a term that may well characterize the general object of the invention.",US2988237A_programmed_article_transfer.pdf,1
+"In applying one feature of this invention, the article transfer head 60 (whether it takes the form of jaws, a suction gripper, or other comparable article-handling tool) is moved by a mechanical power source through a sequence of strokes whose lengths and directions are determined by a program controller, i.e. program drum 62.",US2988237A_programmed_article_transfer.pdf,1
+An especially desirable form of program controller combined with the transfer mechanism to be controlled represents a further feature of the invention. The transfer mechanism operates the transfer head and at the same time displaces a position detector; the position detector is compared through a feedback loop with the program controller until coincidence is reached.,US2988237A_programmed_article_transfer.pdf,1
+"A rate control 76 and a delayed-gate valve control circuit 45 64cooperate with a function control anticipator 64 so that fast traverse of the transfer head is reduced in advance of the required stopping point, avoiding overtravel. Valves 74 and 76 admit hydraulic fluid to the actuating cylinder under control of gate 112.",US2988237A_programmed_article_transfer.pdf,1
+"FIG. 1 is a plan view, partly diagrammatic, showing one form of programmed article transfer apparatus embodying the invention.",US2988237A_programmed_article_transfer.pdf,1
+"FIG. 2 is a block diagram of the transfer-head rate control, program drum 62, function control anticipator 64, and valve control circuit 45 with valves 74 and 76 and gate 112.",US2988237A_programmed_article_transfer.pdf,1
+FIG. 3 is a diagrammatic view of the recording channel and program drum of the control apparatus.,US2988237A_programmed_article_transfer.pdf,1
+What is claimed is:,US2988237A_programmed_article_transfer.pdf,1
+"1. In a programmed article transfer apparatus, the combination comprising: an article transfer head 60 movable through a sequence of strokes; a program drum 62 storing a recorded sequence of position codes; a function control anticipator 64 coupled to the program drum for reducing a traverse rate of the transfer head in advance of a required stopping point; and a valve control circuit 45 responsive to the function control anticipator for actuating a pair of valves 74, 76 to admit fluid to a cylinder driving the transfer head.
+2. The apparatus of claim 1, further comprising a gate 112 interposed between the valve control circuit 45 and the valves 74, 76, the gate being responsive to a delayed-gate signal generated by the function control anticipator 64.
+3. The apparatus of claim 1, wherein the program drum 62 comprises a recording channel on which is recorded a sequence of coded positions corresponding to successive",US2988237A_programmed_article_transfer.pdf,1
+strokes of the transfer head 60.,US2988237A_programmed_article_transfer.pdf,2
+"4. The apparatus of claim 1, wherein the transfer head 60 comprises a gripper for grasping an article and the sequence of strokes comprises lifting, swinging and twisting motions each controlled by a separate track of the program drum 62.",US2988237A_programmed_article_transfer.pdf,2
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+### Structured List of Components:
+
+1. **60** - Transfer Head Rate Control
+2. **62** - Program Drum
+3. **45** - Valve Control Circuit
+4. **76** - Valve
+5. **74** - Valve
+6. **112** - Gate
+7. **Function Control Anticipator** (no reference numeral provided)
+
+### Directional Flow:
+- **Transfer Head Rate Control (60)** to **Valve Control Circuit (45)** (down).
+- **Program Drum (62)** to **Valve Control Circuit (45)** (down).
+- **Function Control Anticipator** to **Valve Control Circuit (45)** (down).
+- **Valve Control Circuit (45)** to **Valves (74 & 76)** (left).
+- **Valve Control Circuit (45)** to **Gate (112)** (right).",US2988237A_programmed_article_transfer.pdf,1
+United States Patent,US5481460A_ev_controller.pdf,1
+"Assignee: Aisin AW Co., Ltd. (exercise adaptation), Anjo, Japan Filed: Mar. 15, 1994    Serial No.: 08/213,556    Patent No.: 5,481,460    Date of Patent: Jan. 2, 1996",US5481460A_ev_controller.pdf,1
+12 Claims    Classification: B60L 15/20 (2006.01); 318/587,US5481460A_ev_controller.pdf,1
+"The present invention relates to a controller for an electric vehicle in which right and left drive wheels are respectively driven by drive motors  which  are  individually  provided.  The  controller  comprises motors 20, 22 for driving right and left wheels, means for detecting rotating speeds or rotation torques of the wheels, and a facility for taking a rotation deviation between  output  signals from the detection means close to zero. As a result, the vehicle is always operated in safety.",US5481460A_ev_controller.pdf,1
+FIG. 1 - Block diagram of the electric vehicle drive and control system.,US5481460A_ev_controller.pdf,1
+"US 5,481,460      Jan. 2, 1996",US5481460A_ev_controller.pdf,1
+"In  general,  an  electric  vehicle  is  designed  in  such  a  way  that motors are rotated using a battery 40 as a power source to drive the wheels, thereby to make the vehicle travel. There is a type of electric vehicle in which a left wheel and a right wheel are driven by individual motors.",US5481460A_ev_controller.pdf,1
+"When the left wheel and the right wheel are driven by individual motors 20, 22, it is possible to control the motors independently of each other so as to improve steering.  However,  when  an abnormality occurs in the rotation of one motor, the vehicle may get into a state in which it is difficult to control, especially at high speed; in the most serious case, the vehicle spins.",US5481460A_ev_controller.pdf,1
+It is therefore a principal object of the present invention to provide an  electric  vehicle  which  is  capable  of  travelling  properly  even when an abnormality occurs in the rotation of one of the left-wheel motor 20 or the right-wheel motor 22.,US5481460A_ev_controller.pdf,1
+"The controller 30 for an electric vehicle is constructed by three or more  microprocessors to monitor a run away  state of the microprocessors  mutually,  so  that  a  motor  is  not  accelerated  or decelerated abnormally if one microprocessor fails.",US5481460A_ev_controller.pdf,1
+"- FIG. 1 is a block diagram showing the arrangement of a system. FIG. 2 is a block diagram showing the arrangement of the details of a controller 30. FIG. 3 is a flow chart illustrating a programming system showing the operation of a vehicle motion control circuit. FIG. 8 is a flow chart of a subroutine program showing the details
+- of velocity limit calculation.
+- FIG. 9 is a schematic view showing the velocity limit calculation.",US5481460A_ev_controller.pdf,1
+What is claimed is:,US5481460A_ev_controller.pdf,1
+"1. A controller for an electric vehicle, comprising: a first motor 20 for  driving  a  left  wheel;  a  second  motor  22  for  driving  a  right wheel; first current supply means for supplying a current to the first motor; second current supply means for supplying a current to the second motor; and means for stopping the current supply from  the  first  current  supply  means  to  the  first  motor  and supplying  a  current  from  the  second  current  supply  means  to the  first  motor  when  the  first  current  supply  means  is  in  an abnormal state.
+2.  The  controller  of  claim  1,  further  comprising  means  for calculating a limit current value with which the vehicle gets into a spinning state from a travelling state, and means for performing a control so that the first or second motor 20, 22 will not exceed the limit current value.
+3.  The  controller  of  claim  1,  wherein  the  controller  30  is constructed  by  three  or  more  microprocessors  configured  to monitor a run-away state of the microprocessors mutually.
+4.  The controller of claim 1, further comprising a wheel speed sensor 24, 26 coupled to each of the first and second motors 20, 22 for detecting a rotation deviation between the left and right wheels.",US5481460A_ev_controller.pdf,1
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+Here’s a structured list mapping each reference numeral to its corresponding component name:
+
+- **20**: Left drive motor
+- **22**: Right drive motor
+- **24**: Left wheel speed sensor
+- **26**: Right wheel speed sensor
+- **30**: Controller (3 microprocessors)
+- **40**: Battery
+
+**Directional Flow:**
+- The arrows indicate connections from the controller to both the left and right drive motors.
+- The left and right drive motors are connected to their respective wheel speed sensors.
+- There is an upward arrow from both wheel speed sensors to the battery, suggesting a flow of information or power towards the battery.",US5481460A_ev_controller.pdf,1
+United States Patent,US8485576B2_robotic_gripper.pdf,1
+"Applicant: Barrett Technology, Inc. (assignee); Inventor of record redacted for this exercise, Newton, MA (US) Filed: Jul. 29, 2011    Serial No.: 13/193,847    Patent No.: 8,485,576 B2    Date of Patent: Jul. 16, 2013 19 Claims    Classification: B25J 15/00 (2006.01); 294/86.4",US8485576B2_robotic_gripper.pdf,1
+A  robotic  gripping  apparatus  includes  one  or  more  constraining plates each having a plurality of holes formed therethrough and a plurality of elongate members. The elongate members  are independently  movable  relative  to  one  another.  Each  elongate member extends through a respective hole or set of aligning holes in the constraining plate(s). A distal end portion of one or more of the elongate members is capable of exerting a force for drawing an object  against  the  distal  end  portion  to  thereby  hold  or  grip  the object.,US8485576B2_robotic_gripper.pdf,1
+"US 8,485,576 B2      Jul. 16, 2013",US8485576B2_robotic_gripper.pdf,1
+"Industrial  robots  often  employ  an  articulated  mobile  structure, commonly referred to as an arm, with mobility approximating that of a human arm. Such a robotic arm is equipped with a so-called end effector to enable the robot to perform its assigned task.",US8485576B2_robotic_gripper.pdf,1
+"In  some  applications,  the  end-effector  performs  a  grasping  or gripping function. One class of gripping end-effectors uses a set of individual  prehensile  mechanical  fingers  which  curl  around  an object, tightening around it in order to grip the object.",US8485576B2_robotic_gripper.pdf,1
+"A mechanically simpler gripping action can be obtained  by employing an attractive force, such as a magnetic or electric field or  fluid  suction.  However,  some  objects  to  be  grasped  are  bulky and/or  offer  no  obvious  flat  space  against  which  to  exert  an attractive force.",US8485576B2_robotic_gripper.pdf,1
+"According to the present invention, the end-effector 100 as shown in  FIGS.  2  and  3  comprises  a  plurality  of  parallel,  independently sliding or adjustable elongate members, hereinafter pins 120. Each pin 120 is movable in an axial direction independent of the other pins 120 and is individually capable of exerting an attractive force on an object 50.",US8485576B2_robotic_gripper.pdf,1
+The  constraining  plates  110  each  have  a  plurality  of  holes  119 through which the pins 120 are freely slidable. The pins 120 are prevented  from  falling  through  the  constraining  plates  110  by  a collar 121 on each pin that is larger than the corresponding hole 119.,US8485576B2_robotic_gripper.pdf,1
+"Locking  is  accomplished  by  translation  and/or  rotation  of  the constraining  plates  110  by  plate  translating/rotating  devices  112, attached  to  a  main  body  102  of  the  end-effector  100  by  an attaching  member 104. Such an actuator is preferably controlled by a control unit 160.",US8485576B2_robotic_gripper.pdf,1
+"- FIG. 1 shows a perspective cross section of a basic structure of a prior art pin and plate structure interacting with an object.
+- FIG. 2 shows a perspective cross section of an apparatus of the present  invention  and  a  pin  locking  mechanism  of  the  present invention in an unlocked configuration.
+- FIG.  3  shows  a  perspective  cross  section  of  the  apparatus  in  a locked configuration.
+- FIG. 4 shows a release mechanism of the present invention.
+- FIG. 11 shows a control unit 160 usable with the present invention.",US8485576B2_robotic_gripper.pdf,1
+FIG. 2 - Perspective cross section of the gripper end-effector 100 in an unlocked configuration.,US8485576B2_robotic_gripper.pdf,1
+What is claimed is:,US8485576B2_robotic_gripper.pdf,1
+"1. A  robotic gripping apparatus, comprising: at least  two constraining  plates  110  arranged  in  parallel  one  on  top  of another  with  a  space  therebetween,  each  of  the  at  least  two constraining  plates  having  a  plurality  of  holes  119  formed therethrough such that respective ones of the holes formed in each  of  the  at  least  two  constraining  plates  are  aligned  with each  other;  and  a  plurality  of  elongate  pins  120,  each  pin extending  through  a  respective  one  of  the  aligned  holes  and independently movable in an axial direction relative to the other pins.
+2. The gripping apparatus of claim 1, wherein at least one of the at  least  two  constraining  plates  110  is  movable  by  a  plate
+3. translating/rotating device 112 to lock the pins 120 in position. 3.  The  gripping  apparatus  of  claim  1,  further  comprising  a control  unit  160  configured  to  modulate  a  force  applied  to  the pins 120 by a positioning member 131 according to the shape of an object 50 to be gripped. 4. The gripping apparatus of claim 1, wherein a distal end 129 of each pin 120 comprises an electromagnet 120a energized by a wire 125a wound around the electromagnet.
+5. The gripping apparatus of claim 1, wherein a distal end 129 of each pin 120 comprises a tube 120c coupled to a fluid suction source 127c for exerting an attractive force on the object 50.",US8485576B2_robotic_gripper.pdf,1
+"[FIGURE] Caption: 
+[VISUAL CONTENT]:
+Here’s a structured list mapping each reference numeral to its corresponding component name in the engineering block diagram:
+
+1. **100** - end-effector (main body)
+2. **110** - constraining plate
+3. **112** - plate translating/ rotating device
+4. **120** - pin
+5. **160** - control unit
+
+### Directional Flow:
+- The flow from **100** (end-effector) connects down to **120** (pin).
+- Both **110** (constraining plate) and **160** (control unit) are positioned laterally, suggesting they contribute to the function of the end-effector but do not directly feed into the pin.
+- **112** (plate translating/ rotating device) is connected to **110** (constraining plate), indicating a relationship or dependency.",US8485576B2_robotic_gripper.pdf,1
